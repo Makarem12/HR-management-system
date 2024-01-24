@@ -18,13 +18,34 @@
     </header>
 
     <main id="employeeInfo">
-        <!-- JavaScript will populate this section -->
+        <form action="" id="employeeForm">
+Full Name:
+<input type="text" name="firstname" id="fullname"><br><br>
+Department : 
+<select name="department" id="department">
+<option value="administration" id="administration">Administration</option>
+<option value="marketing" id="marketing">Marketing</option>
+<option value="development" id="development">Development</option>
+<option value="finance" id="finance">Finance</option>
+
+</select><br><br>
+Level :
+<select name="level" id="level">
+    <option value="junior">Junior</option>
+    <option value="mid-senior">Mid-Senior</option>
+    <option value="senior">Senior</option>
+  </select><br><br>
+  Image URL :
+  <input type="text" name="img" id="img"><br><br>
+  <input type="submit" value="submit" style="font-size: 15px;" onclick="addEmployee()">
+        </form>
+        <div id="employeeCardsContainer"></div>
     </main>
 
     <footer>
         <p>&copy; 2024 HR management system</p>
         <div class="social-media-links">
-            <!-- Add your social media icons/links here -->
+            
             <a href="https://www.facebook.com/profile.php?id=100073525975243&mibextid=9R9pXO">Facebook</a>
             <a href="https://x.com/makarem_sosain?t=I0YlzDQottNeeDUbObKRYw&s=08">Twitter</a>
             <a href="https://www.linkedin.com/in/makarem-abu-sosain">LinkedIn</a>
