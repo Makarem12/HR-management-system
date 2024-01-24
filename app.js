@@ -54,3 +54,56 @@ const employees = [
 employees.forEach(employee => {
     employee.render();
 });
+
+   const container = document.getElementById('employeeCardsContainer');
+
+
+
+
+
+function generateEmployeeID() {
+    return Math.floor(1000 + Math.random() * 9000);
+}
+
+
+function addEmployee() {
+    const name = document.getElementById('name').value;
+    const position = document.getElementById('department').value;
+    const image = document.getElementById('image').value;
+
+    const employeeID = generateEmployeeID();
+
+    
+    const employee = {
+        id: employeeID,
+        name: name,
+        position: position,
+        image: image
+    };
+
+    
+    renderEmployeeCard(employee);
+
+
+    document.getElementById('employeeForm').reset();
+}
+
+
+function renderEmployeeCard(employee) {
+    const container = document.getElementById('employeeCardsContainer');
+
+    
+    const card = document.createElement('div');
+    card.classList.add('employee-card');
+
+    
+    card.innerHTML = `
+        <img src="${employee.image}" alt="${employee.name}">
+        <h3>${employee.name}</h3>
+        <p>${employee.position}</p>
+        <p>ID: ${employee.id}</p>
+    `;
+
+   
+    container.appendChild(card);
+}

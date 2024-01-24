@@ -11,11 +11,11 @@ header {
     text-align: center;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
+/* nav ul { 
+    list-style-type: none; 
+     margin: 0; 
+    padding: 0; 
+} */
 
 nav li {
     display: inline;
@@ -24,7 +24,7 @@ nav li {
 
 main {
     padding: 20px;
-    font-size: x-large;
+    font-size: large;
 }
 
 footer {
@@ -43,4 +43,28 @@ footer {
 
 .social-media-links a:hover {
     text-decoration: underline;
+}
+form{
+    text-align: center;
+    background-color: gray;
+    padding: 20px;
+    margin-left: 350px;
+    margin-right: 350px;
+}
+input{
+    
+    height: 18px;
+    outline: none;
+    border: none;
+    background: #333;
+    margin: 4px 0;
+    border-radius: 4px;
+padding: 4px;
+color: white;
+
+}
+input:focus
+{
+    background: #000;
+    transform: scale(1.1);
 }
