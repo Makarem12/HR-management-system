@@ -1,4 +1,6 @@
-
+// array contains all employee data
+const Alldata = []
+// bult blueprint constructor
 function Employee(id, fullName, department, level) {
     this.id = id;
     this.fullName = fullName;
@@ -7,8 +9,9 @@ function Employee(id, fullName, department, level) {
     this.imageURL = "/home/makarem/HR-management-system/human-resource-management-hr-team-building-and-recruitment-concept-on-blurred-background-TDG9FJ.jpg";
 
     this.salary = this.calculateSalary();
+    Alldata.push(this)
 }
-
+//calculate the MIN && MaX of the salary adapting to the level
 Employee.prototype.calculateSalary = function () {
     const levelTable = {
         Senior: { min: 1500, max: 2000 },
@@ -21,12 +24,12 @@ Employee.prototype.calculateSalary = function () {
     const maxSalary = levelTable[level].max;
 
     const randomSalary = Math.floor(Math.random() * (maxSalary - minSalary + 1)) + minSalary;
-    const netSalary = randomSalary - (randomSalary * 0.075); // 7.5% tax
+    const netSalary = randomSalary - (randomSalary * 0.075);
 
     return netSalary;
 };
 
-
+//appending fullname & the salary inside div
 Employee.prototype.render = function () {
     const employeeInfoContainer = document.getElementById("employeeInfo");
 
@@ -37,9 +40,11 @@ Employee.prototype.render = function () {
     `;
 
     employeeInfoContainer.appendChild(employeeDiv);
+    // localStorage.this.fullName
+    // localStorage.this.salary.toFixed(2)
 };
 
-
+//Nested objects contain static employee Info
 const employees = [
     new Employee(1000, "Ghazi Samer", "Administration", "Senior"),
     new Employee(1001, "Lana Ali", "Finance", "Senior"),
@@ -50,17 +55,12 @@ const employees = [
     new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior"),
 ];
 
-
+//function to iterate each employee (it is like a loop)
 employees.forEach(employee => {
     employee.render();
 });
-
-   const container = document.getElementById('employeeCardsContainer');
-
-
-
-
-
+//function generate IDs
+const container = document.getElementById('employeeCardsContainer');
 function generateEmployeeID() {
     return Math.floor(1000 + Math.random() * 9000);
 }
@@ -73,7 +73,8 @@ function addEmployee() {
 
     const employeeID = generateEmployeeID();
 
-    
+
+
     const employee = {
         id: employeeID,
         name: name,
@@ -81,9 +82,9 @@ function addEmployee() {
         image: image
     };
 
-    
-    renderEmployeeCard(employee);
 
+    renderEmployeeCard(employee);
+    saveData(Alldata)
 
     document.getElementById('employeeForm').reset();
 }
@@ -92,11 +93,11 @@ function addEmployee() {
 function renderEmployeeCard(employee) {
     const container = document.getElementById('employeeCardsContainer');
 
-    
+
     const card = document.createElement('div');
     card.classList.add('employee-card');
 
-    
+
     card.innerHTML = `
         <img src="${employee.image}" alt="${employee.name}">
         <h3>${employee.name}</h3>
@@ -104,6 +105,12 @@ function renderEmployeeCard(employee) {
         <p>ID: ${employee.id}</p>
     `;
 
-   
+
     container.appendChild(card);
 }
+function saveData(data) {
+    let stringArr = JSON.stringify(data);
+    localStorage.setItem("Employee", stringArr)
+
+}
+//data can not save at the localstorage
