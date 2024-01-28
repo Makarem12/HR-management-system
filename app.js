@@ -1,5 +1,5 @@
 // array contains all employee data
-const Alldata=[]
+const Alldata = []
 // bult blueprint constructor
 function Employee(id, fullName, department, level) {
     this.id = id;
@@ -24,7 +24,7 @@ Employee.prototype.calculateSalary = function () {
     const maxSalary = levelTable[level].max;
 
     const randomSalary = Math.floor(Math.random() * (maxSalary - minSalary + 1)) + minSalary;
-    const netSalary = randomSalary - (randomSalary * 0.075); 
+    const netSalary = randomSalary - (randomSalary * 0.075);
 
     return netSalary;
 };
@@ -60,7 +60,7 @@ employees.forEach(employee => {
     employee.render();
 });
 //function generate IDs
-   const container = document.getElementById('employeeCardsContainer');
+const container = document.getElementById('employeeCardsContainer');
 function generateEmployeeID() {
     return Math.floor(1000 + Math.random() * 9000);
 }
@@ -72,9 +72,9 @@ function addEmployee() {
     const image = document.getElementById('image').value;
 
     const employeeID = generateEmployeeID();
-    
 
-    
+
+
     const employee = {
         id: employeeID,
         name: name,
@@ -82,9 +82,9 @@ function addEmployee() {
         image: image
     };
 
-    
+
     renderEmployeeCard(employee);
-saveData(Alldata)
+    saveData(Alldata)
 
     document.getElementById('employeeForm').reset();
 }
@@ -93,11 +93,11 @@ saveData(Alldata)
 function renderEmployeeCard(employee) {
     const container = document.getElementById('employeeCardsContainer');
 
-    
+
     const card = document.createElement('div');
     card.classList.add('employee-card');
 
-    
+
     card.innerHTML = `
         <img src="${employee.image}" alt="${employee.name}">
         <h3>${employee.name}</h3>
@@ -105,11 +105,12 @@ function renderEmployeeCard(employee) {
         <p>ID: ${employee.id}</p>
     `;
 
-   
+
     container.appendChild(card);
 }
-function saveData(data){
+function saveData(data) {
     let stringArr = JSON.stringify(data);
-   localStorage.setItem("Employee" ,stringArr)
- Alldata.push(stringArr)
- }
+    localStorage.setItem("Employee", stringArr)
+
+}
+//data can not save at the localstorage
