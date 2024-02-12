@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>HR management system</h1>
+        <h1><center>HR Management System</center></h1><br><br>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -17,41 +17,49 @@
         </nav>
     </header>
 
-    <main id="employeeInfo">
-        <form action="" id="employeeForm">
-Full Name:
-<input type="text" name="firstname" id="fullname"><br><br>
-Department : 
-<select name="department" id="department">
-<option value="administration" id="administration">Administration</option>
-<option value="marketing" id="marketing">Marketing</option>
-<option value="development" id="development">Development</option>
-<option value="finance" id="finance">Finance</option>
+    <main>
+        <section id="formSection">
+            <h2>Add New Employee</h2>
+            <form id="employeeForm">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required><br><br>
+                
+                <label for="department">Department:</label>
+                <select id="department" name="department">
+                    <option value="Administration">Administration</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Development">Development</option>
+                    <option value="Finance">Finance</option>
+                </select><br><br>
 
-</select><br><br>
-Level :
-<select name="level" id="level">
-    <option value="junior">Junior</option>
-    <option value="mid-senior">Mid-Senior</option>
-    <option value="senior">Senior</option>
-  </select><br><br>
-  Image URL :
-  <input type="text" name="img" id="img"><br><br>
-  <input type="submit" value="submit" style="font-size: 15px;" onclick="addEmployee()">
-        </form>
-        <div id="employeeCardsContainer"></div>
+                <label for="level">Level:</label>
+                <select id="level" name="level">
+                    <option value="Junior">Junior</option>
+                    <option value="Mid-Senior">Mid-Senior</option>
+                    <option value="Senior">Senior</option>
+                </select><br><br>
+
+                <label for="imageURL">Image URL:</label>
+                <input type="text" id="imageURL" name="imageURL"><br><br>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <section id="employeeCards"></section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 HR management system</p>
+    <footer style=" text-align: center;">
+        <p>&copy; 2024 HR Management System All rights reserved.</p>
         <div class="social-media-links">
-            
+            <!-- Add your social media icons/links here -->
             <a href="https://www.facebook.com/profile.php?id=100073525975243&mibextid=9R9pXO">Facebook</a>
             <a href="https://x.com/makarem_sosain?t=I0YlzDQottNeeDUbObKRYw&s=08">Twitter</a>
             <a href="https://www.linkedin.com/in/makarem-abu-sosain">LinkedIn</a>
         </div>
     </footer>
 
+    <!-- <script src="script.js"></script> -->
     <script src="app.js"></script>
 </body>
 </html>

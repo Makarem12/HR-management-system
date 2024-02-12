@@ -4,106 +4,77 @@ function Employee(id, fullName, department, level) {
     this.fullName = fullName;
     this.department = department;
     this.level = level;
-    this.imageURL = "/home/makarem/HR-management-system/human-resource-management-hr-team-building-and-recruitment-concept-on-blurred-background-TDG9FJ.jpg";
+    this.imageURL = ""; 
 
-    this.salary = this.calculateSalary();
-}
+    
+    this.calculateSalary = function() {
+        const levelTable = {
+            Senior: { min: 1500, max: 2000 },
+            "Mid-Senior": { min: 1000, max: 1500 },
+            Junior: { min: 500, max: 1000 },
+        };
 
-Employee.prototype.calculateSalary = function () {
-    const levelTable = {
-        Senior: { min: 1500, max: 2000 },
-        "Mid-Senior": { min: 1000, max: 1500 },
-        Junior: { min: 500, max: 1000 },
+        const minSalary = levelTable[this.level].min;
+        const maxSalary = levelTable[this.level].max;
+
+        const randomSalary = Math.floor(Math.random() * (maxSalary - minSalary + 1)) + minSalary;
+        const netSalary = randomSalary - (randomSalary * 0.075); // 7.5% tax
+
+        return netSalary;
     };
-
-    const level = this.level;
-    const minSalary = levelTable[level].min;
-    const maxSalary = levelTable[level].max;
-
-    const randomSalary = Math.floor(Math.random() * (maxSalary - minSalary + 1)) + minSalary;
-    const netSalary = randomSalary - (randomSalary * 0.075); // 7.5% tax
-
-    return netSalary;
-};
-
-
-Employee.prototype.render = function () {
-    const employeeInfoContainer = document.getElementById("employeeInfo");
-
-    const employeeDiv = document.createElement("div");
-    employeeDiv.innerHTML = `
-        <h2>${this.fullName}</h2>
-        <p>Salary: $${this.salary.toFixed(2)}</p>
-    `;
-
-    employeeInfoContainer.appendChild(employeeDiv);
-};
-
-
-const employees = [
-    new Employee(1000, "Ghazi Samer", "Administration", "Senior"),
-    new Employee(1001, "Lana Ali", "Finance", "Senior"),
-    new Employee(1002, "Tamara Ayoub", "Marketing", "Senior"),
-    new Employee(1003, "Safi Walid", "Administration", "Mid-Senior"),
-    new Employee(1004, "Omar Zaid", "Development", "Senior"),
-    new Employee(1005, "Rana Saleh", "Development", "Junior"),
-    new Employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior"),
-];
-
-
-employees.forEach(employee => {
-    employee.render();
-});
-
-   const container = document.getElementById('employeeCardsContainer');
-
-
-
-
-
-function generateEmployeeID() {
-    return Math.floor(1000 + Math.random() * 9000);
-}
-
-
-function addEmployee() {
-    const name = document.getElementById('name').value;
-    const position = document.getElementById('department').value;
-    const image = document.getElementById('image').value;
-
-    const employeeID = generateEmployeeID();
-
-    
-    const employee = {
-        id: employeeID,
-        name: name,
-        position: position,
-        image: image
-    };
-
-    
-    renderEmployeeCard(employee);
-
-
-    document.getElementById('employeeForm').reset();
-}
-
-
-function renderEmployeeCard(employee) {
-    const container = document.getElementById('employeeCardsContainer');
-
-    
-    const card = document.createElement('div');
-    card.classList.add('employee-card');
-
-    
-    card.innerHTML = `
-        <img src="${employee.image}" alt="${employee.name}">
-        <h3>${employee.name}</h3>
-        <p>${employee.position}</p>
-        <p>ID: ${employee.id}</p>
-    `;
 
    
-    container.appendChild(card);
+    this.render = function() {
+        const employeeInfoContainer = document.getElementById("employeeInfo");
+
+        const employeeDiv = document.createElement("div");
+        employeeDiv.innerHTML = `
+            <h2>${this.fullName}</h2>
+            <p>Salary: $${this.calculateSalary().toFixed(2)}</p>
+        `;
+
+        employeeInfoContainer.appendChild(employeeDiv);
+    };
 }
+
+
+Employee.prototype.renderCard = function () {
+    const employeeCardsContainer = document.getElementById("employeeCards");
+
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card");
+    cardDiv.innerHTML = `
+        <h2>${this.fullName}</h2>
+        <p>ID: ${this.id}</p>
+        <p>Department: ${this.department}</p>
+        <p>Level: ${this.level}</p>
+        <img src="${this.imageURL}" alt="${this.fullName}">
+    `;
+
+    employeeCardsContainer.appendChild(cardDiv);
+};
+
+
+document.getElementById("employeeForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const fullName = document.getElementById("fullName").value;
+    const department = document.getElementById("department").value;
+    const level = document.getElementById("level").value;
+    const imageURL = document.getElementById("imageURL").value;
+
+    
+    function generateEmployeeId() {
+        
+        return Math.floor(1000 + Math.random() * 9000);
+    }
+    const id = generateEmployeeId();
+
+
+    const newEmployee = new Employee(id, fullName, department, level);
+    newEmployee.imageURL = imageURL; 
+
+   
+    newEmployee.renderCard();
+    this.reset();
+});
