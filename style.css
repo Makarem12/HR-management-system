@@ -113,7 +113,4 @@ nav li {
 }
 input:focus
 {
-    background: #333;
-    transform: scale(1.05);
-    color:white;
-}
+
